@@ -164,13 +164,13 @@ var Game = {  // a modified version of the game loop from my previous boulderdas
         k.mode = k.mode || 'up';
         if ((k.key == keyCode) || (k.keys && (k.keys.indexOf(keyCode) >= 0))) {
           if (k.mode == mode) {
-            k.action.call();
+              k.action.call();
           }
         }
       }
     };
-    Dom.on(document, 'keydown', function(ev) { onkey(ev.keyCode, 'down'); } );
-    Dom.on(document, 'keyup',   function(ev) { onkey(ev.keyCode, 'up');   } );
+      Dom.on(document, 'keydown', function(ev) { onkey(ev.keyCode, 'down'); } );
+      Dom.on(document, 'keyup',   function(ev) { onkey(ev.keyCode, 'up');   } );
   },
 
   //---------------------------------------------------------------------------
@@ -204,15 +204,14 @@ var Game = {  // a modified version of the game loop from my previous boulderdas
   //---------------------------------------------------------------------------
 
   playMusic: function() {
-    var music = Dom.get('music');
-    music.loop = true;
-    music.volume = 0.05; // shhhh! annoying music!
-    music.muted = (Dom.storage.muted === "true");
-    music.play();
-    Dom.toggleClassName('mute', 'on', music.muted);
+    var m = document.getElementById("audioContainer");
+    m.loop = true;
+    m.volume = 0.05; // shhhh! annoying music!
+    m.muted = (Dom.storage.muted === "true");
+    Dom.toggleClassName('mute', 'on', m.muted);
     Dom.on('mute', 'click', function() {
-      Dom.storage.muted = music.muted = !music.muted;
-      Dom.toggleClassName('mute', 'on', music.muted);
+      Dom.storage.muted = m.muted = !m.muted;
+      Dom.toggleClassName('mute', 'on', m.muted);
     });
   }
 
